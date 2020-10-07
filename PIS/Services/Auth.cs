@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PIS.Services
 {
-    class Auth
+    internal class Auth
     {
-        private void SignIn()
+        public static void SignIn()
         {
             throw new NotImplementedException();
         }
