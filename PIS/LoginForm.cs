@@ -24,6 +24,7 @@ namespace PIS
 
         private void Btn__login_Click(object sender, EventArgs e)
         {
+            // тут вызов метода сервиса авторизации
             MessageBox.Show(Username + Password);
         }
     }
