@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PIS.Services;
 
 namespace PIS
 {
@@ -24,7 +25,7 @@ namespace PIS
 
         private void Btn__login_Click(object sender, EventArgs e)
         {
-            // тут вызов метода сервиса авторизации
+            Auth.SignIn();
             MessageBox.Show(Username + Password);
         }
     }
