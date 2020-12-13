@@ -1,6 +1,6 @@
-﻿namespace PIS
+﻿namespace PIS.UI.Index
 {
-    partial class Form1
+    partial class IndexForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.btn__showLoginForm = new System.Windows.Forms.Button();
+            this.ButtonShowLoginForm = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -41,24 +41,24 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "тут таблица с исходными данными доступными без авторизации";
             // 
-            // btn__showLoginForm
+            // ButtonShowLoginForm
             // 
-            this.btn__showLoginForm.Location = new System.Drawing.Point(535, 12);
-            this.btn__showLoginForm.Name = "btn__showLoginForm";
-            this.btn__showLoginForm.Size = new System.Drawing.Size(102, 23);
-            this.btn__showLoginForm.TabIndex = 1;
-            this.btn__showLoginForm.Text = "Авторизоваться";
-            this.btn__showLoginForm.UseVisualStyleBackColor = true;
+            this.ButtonShowLoginForm.Location = new System.Drawing.Point(535, 12);
+            this.ButtonShowLoginForm.Name = "ButtonShowLoginForm";
+            this.ButtonShowLoginForm.Size = new System.Drawing.Size(102, 23);
+            this.ButtonShowLoginForm.TabIndex = 1;
+            this.ButtonShowLoginForm.Text = "Sign In";
+            this.ButtonShowLoginForm.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // IndexForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(649, 450);
-            this.Controls.Add(this.btn__showLoginForm);
+            this.Controls.Add(this.ButtonShowLoginForm);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
-            this.Text = "Главная";
+            this.Name = "IndexForm";
+            this.Text = "Garbage";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -67,7 +67,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btn__showLoginForm;
+        private System.Windows.Forms.Button ButtonShowLoginForm;
     }
 }
 
