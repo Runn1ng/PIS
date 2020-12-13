@@ -1,4 +1,4 @@
-﻿namespace PIS
+﻿namespace PIS.UI.Login
 {
     partial class LoginForm
     {
@@ -30,9 +30,9 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.input__username = new System.Windows.Forms.TextBox();
-            this.input__password = new System.Windows.Forms.TextBox();
-            this.btn__login = new System.Windows.Forms.Button();
+            this.InputUsername = new System.Windows.Forms.TextBox();
+            this.InputPassword = new System.Windows.Forms.TextBox();
+            this.ButtonLogin = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -40,42 +40,42 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 13);
+            this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Имя пользователя";
+            this.label1.Text = "Username";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 53);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Пароль";
+            this.label2.Text = "Password";
             // 
-            // input__username
+            // InputUsername
             // 
-            this.input__username.Location = new System.Drawing.Point(12, 26);
-            this.input__username.Name = "input__username";
-            this.input__username.Size = new System.Drawing.Size(189, 20);
-            this.input__username.TabIndex = 0;
+            this.InputUsername.Location = new System.Drawing.Point(12, 26);
+            this.InputUsername.Name = "InputUsername";
+            this.InputUsername.Size = new System.Drawing.Size(189, 20);
+            this.InputUsername.TabIndex = 0;
             // 
-            // input__password
+            // InputPassword
             // 
-            this.input__password.Location = new System.Drawing.Point(12, 69);
-            this.input__password.Name = "input__password";
-            this.input__password.PasswordChar = '•';
-            this.input__password.Size = new System.Drawing.Size(189, 20);
-            this.input__password.TabIndex = 1;
+            this.InputPassword.Location = new System.Drawing.Point(12, 69);
+            this.InputPassword.Name = "InputPassword";
+            this.InputPassword.PasswordChar = '•';
+            this.InputPassword.Size = new System.Drawing.Size(189, 20);
+            this.InputPassword.TabIndex = 1;
             // 
-            // btn__login
+            // ButtonLogin
             // 
-            this.btn__login.Location = new System.Drawing.Point(12, 99);
-            this.btn__login.Name = "btn__login";
-            this.btn__login.Size = new System.Drawing.Size(189, 23);
-            this.btn__login.TabIndex = 2;
-            this.btn__login.Text = "Войти";
-            this.btn__login.UseVisualStyleBackColor = true;
+            this.ButtonLogin.Location = new System.Drawing.Point(12, 99);
+            this.ButtonLogin.Name = "ButtonLogin";
+            this.ButtonLogin.Size = new System.Drawing.Size(189, 23);
+            this.ButtonLogin.TabIndex = 2;
+            this.ButtonLogin.Text = "Sign in";
+            this.ButtonLogin.UseVisualStyleBackColor = true;
             // 
             // LoginForm
             // 
@@ -83,17 +83,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(212, 134);
-            this.Controls.Add(this.btn__login);
-            this.Controls.Add(this.input__password);
-            this.Controls.Add(this.input__username);
+            this.Controls.Add(this.ButtonLogin);
+            this.Controls.Add(this.InputPassword);
+            this.Controls.Add(this.InputUsername);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "LoginForm";
+            this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Авторизация";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -103,8 +103,8 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox input__username;
-        private System.Windows.Forms.TextBox input__password;
-        private System.Windows.Forms.Button btn__login;
+        private System.Windows.Forms.TextBox InputUsername;
+        private System.Windows.Forms.TextBox InputPassword;
+        private System.Windows.Forms.Button ButtonLogin;
     }
 }
