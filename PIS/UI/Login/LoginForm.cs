@@ -9,8 +9,8 @@ namespace PIS.UI.Login
         public LoginForm()
         {
             InitializeComponent();
-            AcceptButton = BtnLogin;
-            BtnLogin.Click += HandleSignButtonClick;
+            AcceptButton = ButtonLogin;
+            ButtonLogin.Click += HandleSignButtonClick;
         }
 
         public string Username => InputUsername.Text.Trim();
@@ -23,16 +23,11 @@ namespace PIS.UI.Login
 
             if (notEmpty)
             {
-                if (AuthService.Login(Username, Password)) DialogResult = DialogResult.OK;
-                else
-                    MessageBox.Show("Wrong username or password", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (AuthService.Login(Username, Password))
+                    DialogResult = DialogResult.OK;
+                else Utils.ShowError("Wrong username or password");
             }
-            else
-            {
-                MessageBox.Show("Fill fields please!", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            else Utils.ShowError("Fill fields please!");
         }
     }
 }
