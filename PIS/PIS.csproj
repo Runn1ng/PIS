@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -188,17 +188,9 @@
     <Compile Include="Controllers\LocalityController.cs" />
     <Compile Include="Controllers\PlanController.cs" />
     <Compile Include="DbContext.cs" />
-    <Compile Include="Migrations\202012211844589_update_user_table.cs" />
-    <Compile Include="Migrations\202012211844589_update_user_table.designer.cs">
-      <DependentUpon>202012211844589_update_user_table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202012221209535_add_note_column.cs" />
-    <Compile Include="Migrations\202012221209535_add_note_column.designer.cs">
-      <DependentUpon>202012221209535_add_note_column.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202012231332198_fix_encoding.cs" />
-    <Compile Include="Migrations\202012231332198_fix_encoding.designer.cs">
-      <DependentUpon>202012231332198_fix_encoding.cs</DependentUpon>
+    <Compile Include="Migrations\202012231609313_change_tables.cs" />
+    <Compile Include="Migrations\202012231609313_change_tables.designer.cs">
+      <DependentUpon>202012231609313_change_tables.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Example.cs" />
     <Compile Include="Models\File.cs" />
@@ -243,14 +235,8 @@
       <DependentUpon>PlanForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Utils.cs" />
-    <EmbeddedResource Include="Migrations\202012211844589_update_user_table.resx">
-      <DependentUpon>202012211844589_update_user_table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202012221209535_add_note_column.resx">
-      <DependentUpon>202012221209535_add_note_column.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202012231332198_fix_encoding.resx">
-      <DependentUpon>202012231332198_fix_encoding.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202012231609313_change_tables.resx">
+      <DependentUpon>202012231609313_change_tables.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Index\IndexForm.resx">
       <DependentUpon>IndexForm.cs</DependentUpon>

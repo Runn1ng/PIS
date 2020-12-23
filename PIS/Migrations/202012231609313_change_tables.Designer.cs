@@ -7,13 +7,13 @@ namespace PIS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class add_note_column : IMigrationMetadata
+    public sealed partial class change_tables : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(add_note_column));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(change_tables));
         
         string IMigrationMetadata.Id
         {
-            get { return "202012221209535_add_note_column"; }
+            get { return "202012231609313_change_tables"; }
         }
         
         string IMigrationMetadata.Source
