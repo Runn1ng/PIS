@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.EntityFrameworkCore.DataAnnotations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace PIS.Models
 {
+    [MySqlCharset("UTF-8")]
     public class Plan
     {
 
@@ -19,6 +21,9 @@ namespace PIS.Models
         public int Id { get; set; }
         public int Year { get; set; }
         public int Month { get; set; }
+
+        [Column(TypeName = "nvarchar"), MySqlCharset("UTF-8")]
+        public string Note { get; set; }
         
         [ForeignKey("Locality")]
         public int Locality_id { get; set; }
