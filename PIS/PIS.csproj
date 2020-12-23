@@ -84,6 +84,17 @@
     <Compile Include="Models\Plan.cs" />
     <Compile Include="Models\PlanDistrict.cs" />
     <Compile Include="Models\Role.cs" />
+    <Compile Include="pisdbDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>pisdbDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AdminPanel\AdminPanelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AdminPanel\AdminPanelForm.Designer.cs">
+      <DependentUpon>AdminPanelForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Index\IndexForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +113,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthService.cs" />
     <Compile Include="UI\Utils.cs" />
+    <EmbeddedResource Include="UI\AdminPanel\AdminPanelForm.resx">
+      <DependentUpon>AdminPanelForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Index\IndexForm.resx">
       <DependentUpon>IndexForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -119,6 +133,17 @@
     </Compile>
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
+    <None Include="pisdbDataSet.xsc">
+      <DependentUpon>pisdbDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="pisdbDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>pisdbDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="pisdbDataSet.xss">
+      <DependentUpon>pisdbDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -147,6 +172,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using PIS.UI.Index;
 
@@ -18,6 +19,8 @@ namespace PIS
         private static void SetupDbConnection()
         {
             Db = new DbContext();
+            // initial render костыль
+            _ = Db.Users.FirstOrDefault();
         }
 
         private static void RenderApplication()
