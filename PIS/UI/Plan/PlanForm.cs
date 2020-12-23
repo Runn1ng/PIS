@@ -18,6 +18,10 @@ namespace PIS.UI.Plan
         public PlanForm(int primaryKey = -1)
         {
             InitializeComponent();
+
+            for (int i = 1; i <= 31; i++)
+                dataGridView1.Columns.Add("column" + i.ToString(), i.ToString());
+
             this.primaryKey = primaryKey;
             var localities = LocalityController.GetLocalities();
             foreach (var locality in localities)
@@ -55,6 +59,16 @@ namespace PIS.UI.Plan
                     }, false);
 
             MessageBox.Show(primaryKey.ToString());
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
