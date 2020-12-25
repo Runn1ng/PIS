@@ -9,6 +9,15 @@ namespace PIS.Controllers
 {
     public class PlanController
     {
+
+        static DbContext db = new DbContext();
+        public static List<Plan> GetPlans(bool published = false)
+        {
+            return published ?
+                    db.Plans.Where(x => x.Published == published).ToList() :
+                    db.Plans.ToList();
+        }
+
         public static Plan GetPlanByPK(int primaryKey)
         {
             using(DbContext db = new DbContext())
