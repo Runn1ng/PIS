@@ -3,6 +3,7 @@ using PIS.UI.Login;
 using PIS.Controllers;
 using System;
 using PIS.UI.Components;
+using PIS.UI.Plan;
 
 namespace PIS.UI.Index
 {
@@ -18,6 +19,7 @@ namespace PIS.UI.Index
             foreach (var plan in plans)
             {
                 dataGridView1.Rows.Add(
+                    plan.Id,
                     plan.Year,
                     plan.Month,
                     plan.Locality.Name,
@@ -65,6 +67,11 @@ namespace PIS.UI.Index
         private void button2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            (new PlanForm((int)dataGridView1.Rows[e.RowIndex].Cells[0].Value)).ShowDialog();
         }
     }
 }
