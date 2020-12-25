@@ -25,7 +25,7 @@ namespace PIS.Controllers
         {
             using(DbContext db = new DbContext())
             {
-                var file = db.Files.First(x => x.Id == file_id);
+                var file = db.Files.FirstOrDefault(x => x.Id == file_id);
                 db.Files.Remove(file);
                 db.SaveChanges();
             }

@@ -71,9 +71,10 @@ namespace PIS.Controllers
             using(DbContext db = new DbContext())
             {
                 var plan = db.Plans.First(x => x.Id == plan_id);
-                FileController.DeleteFile(plan.File_id);
+                int file_id = plan.File_id.GetValueOrDefault();
                 plan.File_id = null;
                 db.SaveChanges();
+                FileController.DeleteFile(file_id);
             }
         }
     }
