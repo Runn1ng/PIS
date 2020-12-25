@@ -60,7 +60,8 @@ namespace PIS.UI.AdminPanel
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            var pk = int.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            var pk = int.Parse(dataGridView1.SelectedRows[0].Cells[0].Value
+                .ToString());
 
             if (pk == Program.CurrentUser.Id)
             {
@@ -70,6 +71,29 @@ namespace PIS.UI.AdminPanel
 
             var userToDelete = await Program.Db.Users.FindAsync(pk);
             await AuthService.DeleteUser(userToDelete);
+            FillTable();
+        }
+
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            var pk = int.Parse(dataGridView1.SelectedRows[0].Cells[0].Value
+                .ToString());
+            var userToUpdate = await Program.Db.Users.FindAsync(pk);
+            var addForm = new AddUserForm(userToUpdate);
+
+            if (addForm.ShowDialog() != DialogResult.OK) return;
+
+            if (userToUpdate == null) return;
+
+            userToUpdate.Username = addForm.Username;
+            userToUpdate.Locality_id = (int) addForm.LocalityId;
+            userToUpdate.Role_id = (int) addForm.RoleId;
+            if (addForm.Password != "")
+                userToUpdate.Password = BCrypt.Net.BCrypt.HashPassword(
+                    addForm.Password,
+                    BCrypt.Net.BCrypt.GenerateSalt(12));
+
+            await Program.Db.SaveChangesAsync();
             FillTable();
         }
     }

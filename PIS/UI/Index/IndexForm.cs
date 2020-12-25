@@ -4,6 +4,7 @@ using PIS.UI.Login;
 using PIS.Controllers;
 using PIS.UI.AdminPanel;
 using PIS.UI.Components;
+using PIS.UI.Main;
 using PIS.UI.Plan;
 
 namespace PIS.UI.Index
@@ -26,12 +27,13 @@ namespace PIS.UI.Index
                     plan.Locality.Name,
                     "Утверждён в ОМСУ",
                     plan.Date
-                    );
+                );
             }
 
             var localities = LocalityController.GetLocalities();
             foreach (var locality in localities)
-                comboBox1.Items.Add(new ComboBoxItem() { Value = locality.Id, Text = locality.Name });
+                comboBox1.Items.Add(new ComboBoxItem()
+                    {Value = locality.Id, Text = locality.Name});
         }
 
         private void DigitsOnly(object sender, EventArgs e)
@@ -44,11 +46,14 @@ namespace PIS.UI.Index
 
             if (int.TryParse(textbox.Text, out value))
             {
-                if(textbox.Tag.ToString() == "year" && (value < 1900 || value > 2100))
+                if (textbox.Tag.ToString() == "year" &&
+                    (value < 1900 || value > 2100))
                 {
                     MessageBox.Show("Год должен быть в диапазоне 1900-2100");
                     textbox.Text = "";
-                } else if (textbox.Tag.ToString() == "month" && (value < 1 || value > 12))
+                }
+                else if (textbox.Tag.ToString() == "month" &&
+                         (value < 1 || value > 12))
                 {
                     MessageBox.Show("Месяц должен быть в диапазоне 1-12");
                     textbox.Text = "";
@@ -62,17 +67,17 @@ namespace PIS.UI.Index
 
         private void button1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-
         }
 
-        private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void dataGridView1_CellMouseDoubleClick(object sender,
+            DataGridViewCellMouseEventArgs e)
         {
-            (new PlanForm((int)dataGridView1.Rows[e.RowIndex].Cells[0].Value)).ShowDialog();
+            (new PlanForm((int) dataGridView1.Rows[e.RowIndex].Cells[0].Value))
+                .ShowDialog();
         }
 
         private void OnButtonShowLoginFormOnClick(object o, EventArgs e)
@@ -88,6 +93,7 @@ namespace PIS.UI.Index
             ButtonShowLoginForm.Visible = false;
             labelUsername.Text = $"ЗДРАВСТВУЙТЕ, {user.Username}";
             labelUsername.Visible = true;
+            button3.Visible = true;
 
             if (user.Role.Id == 1)
             {
@@ -98,6 +104,11 @@ namespace PIS.UI.Index
         private void buttonAdminPanel_Click(object sender, EventArgs e)
         {
             new AdminPanelForm().ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            new MainForm().Show();
         }
     }
 }
