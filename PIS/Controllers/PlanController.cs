@@ -27,16 +27,19 @@ namespace PIS.Controllers
         {
             Plan plan;
             if (creation)
+            {
                 plan = new Plan();
+                plan.Year = values.year;
+                plan.Month = values.month;
+                plan.Locality_id = values.locality;
+                plan.Status = -1;
+                plan.Date = DateTime.Now;
+            }
             else
                 plan = GetPlanByPK(values.id);
-            plan.Year = values.year;
-            plan.Month = values.month;
-            plan.Locality_id = values.locality;
+
             plan.Note = values.note;
             plan.Published = values.published;
-            plan.Status = -1;
-            plan.Date = DateTime.Now;
 
             using (DbContext db = new DbContext())
             {
@@ -46,10 +49,32 @@ namespace PIS.Controllers
                     db.Entry(plan).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
 
-                PlanDistrictController.AddDistricts(plan.Id, values.districts);
+                if (creation)
+                    PlanDistrictController.AddDistricts(plan.Id, values.districts);
             }
 
             return plan.Id;
+        }
+
+        public static void AttachFile(int plan_id, string path)
+        {
+            using (DbContext db = new DbContext())
+            {
+                var plan = db.Plans.First(x => x.Id == plan_id);
+                plan.File_id = FileController.SaveFile(path);
+                db.SaveChanges();
+            }
+        }
+
+        public static void RemoveFile(int plan_id)
+        {
+            using(DbContext db = new DbContext())
+            {
+                var plan = db.Plans.First(x => x.Id == plan_id);
+                FileController.DeleteFile(plan.File_id);
+                plan.File_id = null;
+                db.SaveChanges();
+            }
         }
     }
 }
