@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using PIS.Services;
-using PIS.UI.AdminPanel;
 
 namespace PIS.UI.Login
 {
@@ -12,7 +11,6 @@ namespace PIS.UI.Login
             InitializeComponent();
             AcceptButton = ButtonLogin;
             ButtonLogin.Click += HandleSignButtonClick;
-            new AdminPanelForm().ShowDialog();
         }
 
         public string Username => InputUsername.Text.Trim();

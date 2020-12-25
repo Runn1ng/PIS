@@ -16,17 +16,9 @@ namespace PIS.Services
             return null;
         }
 
-        internal static async Task CreateUser(string username, string password)
+        internal static async Task CreateUser(User user)
         {
-            var newUser = new User
-            {
-                Username = username,
-                Password = BCrypt.Net.BCrypt.HashPassword(password,
-                    BCrypt.Net.BCrypt.GenerateSalt(12)),
-                Role_id = 1,
-                Locality_id = 1,
-            };
-            Program.Db.Users.Add(newUser);
+            Program.Db.Users.Add(user);
             await Program.Db.SaveChangesAsync();
         }
     }

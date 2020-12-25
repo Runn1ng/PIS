@@ -209,6 +209,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>pisdbDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="pisdbDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>pisdbDataSet2.xsd</DependentUpon>
+    </Compile>
     <Compile Include="UI\AdminPanel\AdminPanelForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -305,6 +310,17 @@
     </None>
     <None Include="pisdbDataSet1.xss">
       <DependentUpon>pisdbDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="pisdbDataSet2.xsc">
+      <DependentUpon>pisdbDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="pisdbDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>pisdbDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="pisdbDataSet2.xss">
+      <DependentUpon>pisdbDataSet2.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

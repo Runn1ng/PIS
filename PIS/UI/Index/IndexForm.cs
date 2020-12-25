@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using PIS.UI.Login;
 using PIS.Controllers;
+using PIS.UI.AdminPanel;
 using PIS.UI.Components;
 
 namespace PIS.UI.Index
@@ -71,14 +72,25 @@ namespace PIS.UI.Index
         {
             var form = new LoginForm();
             if (form.ShowDialog() != DialogResult.OK) return;
-            RenderOnSuccessfullLogin(form.Username);
+            RenderOnSuccessfullLogin();
         }
 
-        private void RenderOnSuccessfullLogin(string username)
+        private void RenderOnSuccessfullLogin()
         {
+            var user = Program.CurrentUser;
             ButtonShowLoginForm.Visible = false;
-            labelUsername.Text = $"ЗДРАВСТВУЙТЕ, {username}";
+            labelUsername.Text = $"ЗДРАВСТВУЙТЕ, {user.Username}";
             labelUsername.Visible = true;
+
+            if (user.Role.Id == 1)
+            {
+                buttonAdminPanel.Visible = true;
+            }
+        }
+
+        private void buttonAdminPanel_Click(object sender, EventArgs e)
+        {
+            new AdminPanelForm().ShowDialog();
         }
     }
 }

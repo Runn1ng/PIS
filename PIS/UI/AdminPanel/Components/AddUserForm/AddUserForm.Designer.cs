@@ -1,4 +1,4 @@
-﻿namespace PIS.UI.AdminPanel.Components.AddUserModal
+﻿namespace PIS.UI.AdminPanel.Components.AddUserForm
 {
     partial class AddUserForm
     {
@@ -34,20 +34,29 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.pisdbDataSet1 = new PIS.pisdbDataSet1();
             this.rolesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pisdbDataSet1 = new PIS.pisdbDataSet1();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.rolesTableAdapter = new PIS.pisdbDataSet1TableAdapters.RolesTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.pisdbDataSet1)).BeginInit();
+            this.button1 = new System.Windows.Forms.Button();
+            this.pisdbDataSet2 = new PIS.pisdbDataSet2();
+            this.localitiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.localitiesTableAdapter = new PIS.pisdbDataSet2TableAdapters.LocalitiesTableAdapter();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.rolesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pisdbDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pisdbDataSet2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.localitiesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(12, 24);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(132, 20);
+            this.textBox1.Size = new System.Drawing.Size(137, 20);
             this.textBox1.TabIndex = 0;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
             // 
@@ -61,7 +70,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 47);
+            this.label2.Location = new System.Drawing.Point(8, 98);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 3;
@@ -70,7 +79,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 87);
+            this.label3.Location = new System.Drawing.Point(8, 138);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(102, 13);
             this.label3.TabIndex = 4;
@@ -82,40 +91,87 @@
             this.comboBox1.DisplayMember = "Name";
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 63);
+            this.comboBox1.Location = new System.Drawing.Point(11, 114);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(132, 21);
+            this.comboBox1.Size = new System.Drawing.Size(138, 21);
             this.comboBox1.TabIndex = 5;
             this.comboBox1.ValueMember = "Id";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(12, 103);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(132, 21);
-            this.comboBox2.TabIndex = 6;
-            // 
-            // pisdbDataSet1
-            // 
-            this.pisdbDataSet1.DataSetName = "pisdbDataSet1";
-            this.pisdbDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // rolesBindingSource
             // 
             this.rolesBindingSource.DataMember = "Roles";
             this.rolesBindingSource.DataSource = this.pisdbDataSet1;
             // 
+            // pisdbDataSet1
+            // 
+            this.pisdbDataSet1.DataSetName = "pisdbDataSet1";
+            this.pisdbDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DataSource = this.localitiesBindingSource;
+            this.comboBox2.DisplayMember = "Name";
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(11, 154);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(137, 21);
+            this.comboBox2.TabIndex = 6;
+            this.comboBox2.ValueMember = "Id";
+            // 
             // rolesTableAdapter
             // 
             this.rolesTableAdapter.ClearBeforeFill = true;
+            // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(12, 202);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(137, 36);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Создать";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // pisdbDataSet2
+            // 
+            this.pisdbDataSet2.DataSetName = "pisdbDataSet2";
+            this.pisdbDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // localitiesBindingSource
+            // 
+            this.localitiesBindingSource.DataMember = "Localities";
+            this.localitiesBindingSource.DataSource = this.pisdbDataSet2;
+            // 
+            // localitiesTableAdapter
+            // 
+            this.localitiesTableAdapter.ClearBeforeFill = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 47);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Пароль";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(12, 63);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(137, 20);
+            this.textBox2.TabIndex = 8;
             // 
             // AddUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(162, 250);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label3);
@@ -123,12 +179,15 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AddUserForm";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "AddUserForm";
             this.Load += new System.EventHandler(this.AddUserForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pisdbDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pisdbDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pisdbDataSet2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.localitiesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,5 +204,11 @@
         private pisdbDataSet1 pisdbDataSet1;
         private System.Windows.Forms.BindingSource rolesBindingSource;
         private pisdbDataSet1TableAdapters.RolesTableAdapter rolesTableAdapter;
+        private System.Windows.Forms.Button button1;
+        private pisdbDataSet2 pisdbDataSet2;
+        private System.Windows.Forms.BindingSource localitiesBindingSource;
+        private pisdbDataSet2TableAdapters.LocalitiesTableAdapter localitiesTableAdapter;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
