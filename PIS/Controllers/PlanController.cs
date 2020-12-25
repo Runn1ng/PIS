@@ -20,10 +20,7 @@ namespace PIS.Controllers
 
         public static Plan GetPlanByPK(int primaryKey)
         {
-            using(DbContext db = new DbContext())
-            {
-                return db.Plans.First(x => x.Id == primaryKey);
-            }
+            return db.Plans.First(x => x.Id == primaryKey);
         }
 
         public static int SavePlan(dynamic values, bool creation = true)
@@ -48,6 +45,8 @@ namespace PIS.Controllers
                 else
                     db.Entry(plan).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
+
+                PlanDistrictController.AddDistricts(plan.Id, values.districts);
             }
 
             return plan.Id;

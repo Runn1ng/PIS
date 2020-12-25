@@ -25,8 +25,8 @@ namespace PIS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new IndexForm());
-            //Application.Run(new UI.Plan.PlanForm());
+            //Application.Run(new IndexForm());
+            Application.Run(new UI.Plan.PlanForm());
             //Application.Run(new UI.Main.MainForm());
         }
     }

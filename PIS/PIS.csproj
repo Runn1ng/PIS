@@ -187,6 +187,7 @@
   <ItemGroup>
     <Compile Include="Controllers\LocalityController.cs" />
     <Compile Include="Controllers\PlanController.cs" />
+    <Compile Include="Controllers\PlanDistrictController.cs" />
     <Compile Include="DbContext.cs" />
     <Compile Include="Migrations\202012231609313_change_tables.cs" />
     <Compile Include="Migrations\202012231609313_change_tables.designer.cs">
@@ -199,12 +200,6 @@
     <Compile Include="Models\PlanDistrict.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="UI\Components\ComboBoxItem.cs" />
-    <Compile Include="UI\Components\FilterComponent.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="UI\Components\FilterComponent.Designer.cs">
-      <DependentUpon>FilterComponent.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\Index\IndexForm.cs">
       <SubType>Form</SubType>
     </Compile>
