@@ -37,17 +37,17 @@
             this.rolesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pisdbDataSet1 = new PIS.pisdbDataSet1();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.localitiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pisdbDataSet2 = new PIS.pisdbDataSet2();
             this.rolesTableAdapter = new PIS.pisdbDataSet1TableAdapters.RolesTableAdapter();
             this.button1 = new System.Windows.Forms.Button();
-            this.pisdbDataSet2 = new PIS.pisdbDataSet2();
-            this.localitiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.localitiesTableAdapter = new PIS.pisdbDataSet2TableAdapters.LocalitiesTableAdapter();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.rolesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pisdbDataSet1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pisdbDataSet2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.localitiesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pisdbDataSet2)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -119,6 +119,16 @@
             this.comboBox2.TabIndex = 6;
             this.comboBox2.ValueMember = "Id";
             // 
+            // localitiesBindingSource
+            // 
+            this.localitiesBindingSource.DataMember = "Localities";
+            this.localitiesBindingSource.DataSource = this.pisdbDataSet2;
+            // 
+            // pisdbDataSet2
+            // 
+            this.pisdbDataSet2.DataSetName = "pisdbDataSet2";
+            this.pisdbDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // rolesTableAdapter
             // 
             this.rolesTableAdapter.ClearBeforeFill = true;
@@ -133,16 +143,6 @@
             this.button1.Text = "Создать";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // pisdbDataSet2
-            // 
-            this.pisdbDataSet2.DataSetName = "pisdbDataSet2";
-            this.pisdbDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // localitiesBindingSource
-            // 
-            this.localitiesBindingSource.DataMember = "Localities";
-            this.localitiesBindingSource.DataSource = this.pisdbDataSet2;
             // 
             // localitiesTableAdapter
             // 
@@ -161,6 +161,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(12, 63);
             this.textBox2.Name = "textBox2";
+            this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(137, 20);
             this.textBox2.TabIndex = 8;
             // 
@@ -186,8 +187,8 @@
             this.Load += new System.EventHandler(this.AddUserForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.rolesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pisdbDataSet1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pisdbDataSet2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.localitiesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pisdbDataSet2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
