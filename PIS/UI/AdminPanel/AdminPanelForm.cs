@@ -57,5 +57,20 @@ namespace PIS.UI.AdminPanel
             await AuthService.CreateUser(newUser);
             FillTable();
         }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            var pk = int.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+
+            if (pk == Program.CurrentUser.Id)
+            {
+                Utils.ShowError("себя нельзя удалить. извините");
+                return;
+            }
+
+            var userToDelete = await Program.Db.Users.FindAsync(pk);
+            await AuthService.DeleteUser(userToDelete);
+            FillTable();
+        }
     }
 }

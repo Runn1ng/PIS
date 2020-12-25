@@ -5,7 +5,7 @@ namespace PIS.UI
     internal class Utils
     {
         public static void ShowError(string message,
-            string headerText = "Error")
+            string headerText = "Ошибка")
         {
             MessageBox.Show(
                 message,

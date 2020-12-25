@@ -29,9 +29,9 @@ namespace PIS.UI.Login
                     DialogResult = DialogResult.OK;
                     Program.CurrentUser = user;
                 }
-                else Utils.ShowError("Wrong username or password");
+                else Utils.ShowError("неверное имя пользователя или пароль");
             }
-            else Utils.ShowError("Fill fields please!");
+            else Utils.ShowError("заполни те поля пожалуйста!");
         }
     }
 }

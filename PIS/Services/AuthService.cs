@@ -21,5 +21,11 @@ namespace PIS.Services
             Program.Db.Users.Add(user);
             await Program.Db.SaveChangesAsync();
         }
+
+        internal static async Task DeleteUser(User user)
+        {
+            Program.Db.Users.Remove(user);
+            await Program.Db.SaveChangesAsync();
+        }
     }
 }
