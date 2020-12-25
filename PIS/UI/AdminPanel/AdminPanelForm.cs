@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PIS.Services;
+using PIS.UI.AdminPanel.Components.AddUserModal;
 
 namespace PIS.UI.AdminPanel
 {
@@ -27,6 +28,11 @@ namespace PIS.UI.AdminPanel
         private void AdminPanelForm_Load(object sender, EventArgs e)
         {
             usersTableAdapter.Fill(pisdbDataSet.Users);
+        }
+
+        private void ButtonAddUser_Click(object sender, EventArgs e)
+        {
+            new AddUserForm().ShowDialog();
         }
     }
 }

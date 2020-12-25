@@ -30,18 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.pisdbDataSet = new PIS.pisdbDataSet();
-            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.usersTableAdapter = new PIS.pisdbDataSetTableAdapters.UsersTableAdapter();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.roleidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.localityidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pisdbDataSet = new PIS.pisdbDataSet();
+            this.usersTableAdapter = new PIS.pisdbDataSetTableAdapters.UsersTableAdapter();
             this.ButtonAddUser = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pisdbDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pisdbDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -59,20 +59,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(548, 150);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // pisdbDataSet
-            // 
-            this.pisdbDataSet.DataSetName = "pisdbDataSet";
-            this.pisdbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // usersBindingSource
-            // 
-            this.usersBindingSource.DataMember = "Users";
-            this.usersBindingSource.DataSource = this.pisdbDataSet;
-            // 
-            // usersTableAdapter
-            // 
-            this.usersTableAdapter.ClearBeforeFill = true;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -108,14 +94,29 @@
             this.localityidDataGridViewTextBoxColumn.HeaderText = "Населенный пункт";
             this.localityidDataGridViewTextBoxColumn.Name = "localityidDataGridViewTextBoxColumn";
             // 
+            // usersBindingSource
+            // 
+            this.usersBindingSource.DataMember = "Users";
+            this.usersBindingSource.DataSource = this.pisdbDataSet;
+            // 
+            // pisdbDataSet
+            // 
+            this.pisdbDataSet.DataSetName = "pisdbDataSet";
+            this.pisdbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // usersTableAdapter
+            // 
+            this.usersTableAdapter.ClearBeforeFill = true;
+            // 
             // ButtonAddUser
             // 
             this.ButtonAddUser.Location = new System.Drawing.Point(12, 168);
             this.ButtonAddUser.Name = "ButtonAddUser";
-            this.ButtonAddUser.Size = new System.Drawing.Size(92, 31);
+            this.ButtonAddUser.Size = new System.Drawing.Size(138, 54);
             this.ButtonAddUser.TabIndex = 1;
-            this.ButtonAddUser.Text = "Add User";
+            this.ButtonAddUser.Text = "Создать пользователя";
             this.ButtonAddUser.UseVisualStyleBackColor = true;
+            this.ButtonAddUser.Click += new System.EventHandler(this.ButtonAddUser_Click);
             // 
             // AdminPanelForm
             // 
@@ -132,8 +133,8 @@
             this.Text = "Admin Panel";
             this.Load += new System.EventHandler(this.AdminPanelForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pisdbDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pisdbDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }

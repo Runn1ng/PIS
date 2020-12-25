@@ -203,11 +203,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>pisdbDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="pisdbDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>pisdbDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="UI\AdminPanel\AdminPanelForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\AdminPanel\AdminPanelForm.Designer.cs">
       <DependentUpon>AdminPanelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AdminPanel\Components\AddUserForm\AddUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AdminPanel\Components\AddUserForm\AddUserForm.Designer.cs">
+      <DependentUpon>AddUserForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Components\ComboBoxItem.cs" />
     <Compile Include="UI\Components\FilterComponent.cs">
@@ -252,6 +263,9 @@
     <EmbeddedResource Include="UI\AdminPanel\AdminPanelForm.resx">
       <DependentUpon>AdminPanelForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\AdminPanel\Components\AddUserForm\AddUserForm.resx">
+      <DependentUpon>AddUserForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Index\IndexForm.resx">
       <DependentUpon>IndexForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -285,6 +299,17 @@
     </None>
     <None Include="pisdbDataSet.xss">
       <DependentUpon>pisdbDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="pisdbDataSet1.xsc">
+      <DependentUpon>pisdbDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="pisdbDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>pisdbDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="pisdbDataSet1.xss">
+      <DependentUpon>pisdbDataSet1.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

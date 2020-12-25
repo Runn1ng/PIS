@@ -25,8 +25,12 @@ namespace PIS.UI.Login
 
             if (notEmpty)
             {
-                if (AuthService.Login(Username, Password))
+                var user = AuthService.Login(Username, Password);
+                if (user != null)
+                {
                     DialogResult = DialogResult.OK;
+                    Program.CurrentUser = user;
+                }
                 else Utils.ShowError("Wrong username or password");
             }
             else Utils.ShowError("Fill fields please!");

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using PIS.Models;
 using PIS.UI.Index;
 using PIS.UI;
 
@@ -9,6 +10,7 @@ namespace PIS
     internal static class Program
     {
         public static DbContext Db { get; private set; }
+        public static User CurrentUser { get;  set; }
 
         [STAThread]
         private static void Main()
