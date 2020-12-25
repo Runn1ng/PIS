@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using PIS.UI.Login;
 using PIS.Controllers;
+using PIS.UI.Components;
 
 namespace PIS.UI.Index
 {
@@ -24,6 +25,46 @@ namespace PIS.UI.Index
                     plan.Date
                     );
             }
+
+            var localities = LocalityController.GetLocalities();
+            foreach (var locality in localities)
+                comboBox1.Items.Add(new ComboBoxItem() { Value = locality.Id, Text = locality.Name });
+        }
+
+        private void DigitsOnly(object sender, EventArgs e)
+        {
+            var textbox = sender as TextBox;
+            int value;
+
+            if (textbox.Text == "")
+                return;
+
+            if (int.TryParse(textbox.Text, out value))
+            {
+                if(textbox.Tag.ToString() == "year" && (value < 1900 || value > 2100))
+                {
+                    MessageBox.Show("Год должен быть в диапазоне 1900-2100");
+                    textbox.Text = "";
+                } else if (textbox.Tag.ToString() == "month" && (value < 1 || value > 12))
+                {
+                    MessageBox.Show("Месяц должен быть в диапазоне 1-12");
+                    textbox.Text = "";
+                }
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста вводите числа");
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void OnButtonShowLoginFormOnClick(object o, EventArgs e)
@@ -38,8 +79,6 @@ namespace PIS.UI.Index
             ButtonShowLoginForm.Visible = false;
             labelUsername.Text = $"ЗДРАВСТВУЙТЕ, {username}";
             labelUsername.Visible = true;
-
-            //if (use)
         }
     }
 }
