@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using PIS.UI.Index;
+using PIS.UI;
 
 namespace PIS
 {
@@ -28,6 +29,8 @@ namespace PIS
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new IndexForm());
+            //Application.Run(new UI.Plan.PlanForm());
+            //Application.Run(new UI.Main.MainForm());
         }
     }
 }
