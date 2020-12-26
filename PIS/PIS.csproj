@@ -202,6 +202,7 @@
     <Compile Include="Models\PlanDistrict.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="UI\Components\ComboBoxItem.cs" />
+    <Compile Include="UI\Components\Filter.cs" />
     <Compile Include="UI\Index\IndexForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PIS.Models;
+using PIS.UI.Components;
 
 namespace PIS.Controllers
 {
@@ -11,12 +12,17 @@ namespace PIS.Controllers
     {
 
         static DbContext db = new DbContext();
-        public static List<Plan> GetPlans(bool published = false)
+        public static List<Plan> GetPlans(bool published = false, Filter filter = null)
         {
-            return published ?
+            if(filter == null)
+                return published ?
                     db.Plans.Where(x => x.Published == published).ToList() :
                     db.Plans.ToList();
+            return published ?
+                    db.Plans.Where(x => x.Published == published).ToList().Where(x => filter.CheckPlan(x)).ToList() :
+                    db.Plans.ToList().Where(x => filter.CheckPlan(x)).ToList();
         }
+
 
         public static Plan GetPlanByPK(int primaryKey)
         {

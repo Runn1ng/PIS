@@ -61,7 +61,32 @@ namespace PIS.UI.Index
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Filter filter = new Filter();
 
+            if (textBox1.Text != "")
+                filter.year_from = int.Parse(textBox1.Text);
+            if (textBox2.Text != "")
+                filter.year_to = int.Parse(textBox2.Text);
+            if (textBox3.Text != "")
+                filter.month_from = int.Parse(textBox3.Text);
+            if (textBox4.Text != "")
+                filter.month_to = int.Parse(textBox4.Text);
+            if (comboBox1.SelectedIndex > -1)
+                filter.locality_id = (int)(comboBox1.SelectedItem as ComboBoxItem).Value;
+
+            dataGridView1.Rows.Clear();
+            var plans = PlanController.GetPlans(true, filter);
+            foreach (var plan in plans)
+            {
+                dataGridView1.Rows.Add(
+                    plan.Id,
+                    plan.Year,
+                    plan.Month,
+                    plan.Locality.Name,
+                    "Утверждён в ОМСУ",
+                    plan.Date
+                    );
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
