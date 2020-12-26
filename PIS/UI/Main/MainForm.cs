@@ -10,11 +10,14 @@ using System.Windows.Forms;
 using PIS.Controllers;
 using PIS.UI.Components;
 using PIS.UI.Plan;
+using Application = Microsoft.Office.Interop.Excel.Application;
 
 namespace PIS.UI.Main
 {
     public partial class MainForm : Form
     {
+        private Application xl;
+
         public MainForm()
         {
             InitializeComponent();
@@ -22,22 +25,54 @@ namespace PIS.UI.Main
 
             var localities = LocalityController.GetLocalities();
             foreach (var locality in localities)
-                comboBox1.Items.Add(new ComboBoxItem() { Value = locality.Id, Text = locality.Name });
+                comboBox1.Items.Add(new ComboBoxItem()
+                    {Value = locality.Id, Text = locality.Name});
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+        }
 
+
+        private void copyAlltoClipboard()
+        {
+            dataGridView1.SelectAll();
+            DataObject dataObj = dataGridView1.GetClipboardContent();
+            if (dataObj != null)
+                Clipboard.SetDataObject(dataObj);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            copyAlltoClipboard();
+            Microsoft.Office.Interop.Excel.Application xlexcel;
+            Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
+            Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
+            object misValue = System.Reflection.Missing.Value;
+            xl = new Application();
+            xl.Visible = true;
+            xlWorkBook = xl.Workbooks.Add(misValue);
+            xlWorkSheet =
+                (Microsoft.Office.Interop.Excel.Worksheet) xlWorkBook.Worksheets
+                    .get_Item(1);
+            Microsoft.Office.Interop.Excel.Range CR =
+                (Microsoft.Office.Interop.Excel.Range) xlWorkSheet.Cells[3, 1];
+            CR.Select();
+            xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing,
+                Type.Missing, Type.Missing, Type.Missing, true);
+            xlWorkSheet.Cells[1, 1] = "Заявки по месяцам --- ";
+            xlWorkSheet.Cells[2, 2] = "Год";
+            xlWorkSheet.Cells[2, 3] = "Месяц";
+            xlWorkSheet.Cells[2, 4] = "Населенный пункт";
+            xlWorkSheet.Cells[2, 5] = "Статус";
+            xlWorkSheet.Cells[2, 6] = "Дата установки статуса";
         }
 
-        private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void dataGridView1_CellMouseDoubleClick(object sender,
+            DataGridViewCellMouseEventArgs e)
         {
-            (new PlanForm((int)dataGridView1.Rows[e.RowIndex].Cells[0].Value)).ShowDialog();
+            (new PlanForm((int) dataGridView1.Rows[e.RowIndex].Cells[0].Value))
+                .ShowDialog();
         }
 
         private void ShowPlans()
@@ -53,7 +88,7 @@ namespace PIS.UI.Main
                     plan.Locality.Name,
                     "Утверждён в ОМСУ",
                     plan.Date
-                    );
+                );
             }
         }
 
@@ -76,7 +111,8 @@ namespace PIS.UI.Main
             if (textBox4.Text != "")
                 filter.month_to = int.Parse(textBox4.Text);
             if (comboBox1.SelectedIndex > -1)
-                filter.locality_id = (int)(comboBox1.SelectedItem as ComboBoxItem).Value;
+                filter.locality_id =
+                    (int) (comboBox1.SelectedItem as ComboBoxItem).Value;
 
             dataGridView1.Rows.Clear();
             var plans = PlanController.GetPlans(false, filter);
@@ -89,7 +125,7 @@ namespace PIS.UI.Main
                     plan.Locality.Name,
                     "Утверждён в ОМСУ",
                     plan.Date
-                    );
+                );
             }
         }
 
