@@ -5,9 +5,12 @@ using System.Data;
 using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using PIS.Controllers;
 using PIS.Models;
 using PIS.Services;
+using PIS.UI.AdminPanel.Components.AddLocalityForm;
 using PIS.UI.AdminPanel.Components.AddUserForm;
 
 namespace PIS.UI.AdminPanel
@@ -19,24 +22,34 @@ namespace PIS.UI.AdminPanel
             InitializeComponent();
         }
 
-        private void AdminPanelForm_Load(object sender, EventArgs e)
+        private async void AdminPanelForm_Load(object sender, EventArgs e)
         {
-            FillTable();
+            await FillUsersTable();
+            await FillLocalitesTable();
         }
 
-        private async void FillTable()
+        private async Task FillUsersTable()
         {
             var users = await Program.Db.Users.ToListAsync();
             dataGridView1.Rows.Clear();
             foreach (var user in users)
-            {
                 dataGridView1.Rows.Add(
                     user.Id,
                     user.Username,
                     user.Role?.Name,
                     user.Locality?.Name
                 );
-            }
+        }
+
+        private async Task FillLocalitesTable()
+        {
+            var users = await Program.Db.Localities.ToListAsync();
+            dataGridView2.Rows.Clear();
+            foreach (var locality in users)
+                dataGridView2.Rows.Add(
+                    locality.Id,
+                    locality.Name
+                );
         }
 
         private async void ButtonAddUser_Click(object sender, EventArgs e)
@@ -51,11 +64,11 @@ namespace PIS.UI.AdminPanel
                 Password = BCrypt.Net.BCrypt.HashPassword(addForm.Password,
                     BCrypt.Net.BCrypt.GenerateSalt(12)),
                 Role_id = (int) addForm.RoleId,
-                Locality_id = (int) addForm.LocalityId,
+                Locality_id = (int) addForm.LocalityId
             };
 
             await AuthService.CreateUser(newUser);
-            FillTable();
+            await FillUsersTable();
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -71,7 +84,7 @@ namespace PIS.UI.AdminPanel
 
             var userToDelete = await Program.Db.Users.FindAsync(pk);
             await AuthService.DeleteUser(userToDelete);
-            FillTable();
+            await FillUsersTable();
         }
 
         private async void button2_Click(object sender, EventArgs e)
@@ -94,7 +107,36 @@ namespace PIS.UI.AdminPanel
                     BCrypt.Net.BCrypt.GenerateSalt(12));
 
             await Program.Db.SaveChangesAsync();
-            FillTable();
+            await FillUsersTable();
+        }
+
+        private async void button3_Click(object sender, EventArgs e)
+        {
+            var addForm = new AddLocalityForm();
+
+            if (addForm.ShowDialog() != DialogResult.OK) return;
+
+            var locality = new Locality() {Name = addForm.LocalityName};
+
+            await LocalityController.AddLocality(locality);
+           await FillLocalitesTable();
+        }
+
+        private async void button4_Click(object sender, EventArgs e)
+        {
+            var pk = int.Parse(dataGridView2.SelectedRows[0].Cells[0].Value
+                .ToString());
+            var userToUpdate = await Program.Db.Localities.FindAsync(pk);
+            var addForm = new AddLocalityForm(userToUpdate);
+
+            if (addForm.ShowDialog() != DialogResult.OK) return;
+
+            if (userToUpdate == null) return;
+
+            userToUpdate.Name = addForm.LocalityName;
+
+            await Program.Db.SaveChangesAsync();
+            await FillLocalitesTable();
         }
     }
 }
