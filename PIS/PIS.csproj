@@ -229,6 +229,7 @@
       <DependentUpon>AddUserForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Components\ComboBoxItem.cs" />
+    <Compile Include="UI\Components\Filter.cs" />
     <Compile Include="UI\Index\IndexForm.cs">
       <SubType>Form</SubType>
     </Compile>
