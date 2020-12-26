@@ -9,6 +9,14 @@ namespace PIS.Controllers
 {
     public class PlanDistrictController
     {
+        public static List<PlanDistrict> GetDistrictsByPlan(Plan plan)
+        {
+            using(DbContext db = new DbContext())
+            {
+                return db.PlanDistricts.Where(x => x.Plan_id == plan.Id).ToList();
+            }
+        }
+
         public static void AddDistricts(int planId, Dictionary<string, List<int>> districts)
         {
             using(DbContext db = new DbContext())

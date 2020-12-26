@@ -18,11 +18,12 @@ namespace PIS.UI.Main
         public MainForm()
         {
             InitializeComponent();
-            ShowPlans();
 
             var localities = LocalityController.GetLocalities();
             foreach (var locality in localities)
                 comboBox1.Items.Add(new ComboBoxItem() { Value = locality.Id, Text = locality.Name });
+
+            button1_Click(null, null);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -50,7 +51,7 @@ namespace PIS.UI.Main
                     plan.Id,
                     plan.Year,
                     plan.Month,
-                    plan.Locality.Name,
+                    (comboBox1.Items[plan.Locality_id - 1] as ComboBoxItem).Text,
                     "Утверждён в ОМСУ",
                     plan.Date
                     );
@@ -86,7 +87,7 @@ namespace PIS.UI.Main
                     plan.Id,
                     plan.Year,
                     plan.Month,
-                    plan.Locality.Name,
+                    (comboBox1.Items[plan.Locality_id - 1] as ComboBoxItem).Text,
                     "Утверждён в ОМСУ",
                     plan.Date
                     );

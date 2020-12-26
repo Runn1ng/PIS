@@ -18,22 +18,24 @@ namespace PIS.UI.Index
 
             var plans = PlanController.GetPlans(true);
 
+
+            var localities = LocalityController.GetLocalities();
+            foreach (var locality in localities)
+                comboBox1.Items.Add(new ComboBoxItem()
+                { Value = locality.Id, Text = locality.Name });
+
             foreach (var plan in plans)
             {
                 dataGridView1.Rows.Add(
                     plan.Id,
                     plan.Year,
                     plan.Month,
-                    plan.Locality.Name,
+                    (comboBox1.Items[plan.Locality_id - 1] as ComboBoxItem).Text,
                     "Утверждён в ОМСУ",
                     plan.Date
                 );
             }
 
-            var localities = LocalityController.GetLocalities();
-            foreach (var locality in localities)
-                comboBox1.Items.Add(new ComboBoxItem()
-                    {Value = locality.Id, Text = locality.Name});
         }
 
         private void DigitsOnly(object sender, EventArgs e)
@@ -88,7 +90,7 @@ namespace PIS.UI.Index
                     plan.Id,
                     plan.Year,
                     plan.Month,
-                    plan.Locality.Name,
+                    (comboBox1.Items[plan.Locality_id - 1] as ComboBoxItem).Text,
                     "Утверждён в ОМСУ",
                     plan.Date
                     );
@@ -102,8 +104,9 @@ namespace PIS.UI.Index
         private void dataGridView1_CellMouseDoubleClick(object sender,
             DataGridViewCellMouseEventArgs e)
         {
-            (new PlanForm((int) dataGridView1.Rows[e.RowIndex].Cells[0].Value))
+            (new PlanForm((int) dataGridView1.Rows[e.RowIndex].Cells[0].Value, true))
                 .ShowDialog();
+            button1_Click(null, null);
         }
 
         private void OnButtonShowLoginFormOnClick(object o, EventArgs e)

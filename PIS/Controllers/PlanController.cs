@@ -14,24 +14,30 @@ namespace PIS.Controllers
         static DbContext db = new DbContext();
         public static List<Plan> GetPlans(bool published = false, Filter filter = null)
         {
-            if(filter == null)
+            using(DbContext db = new DbContext())
+            {
+                if (filter == null)
+                    return published ?
+                        db.Plans.Where(x => x.Published == published).ToList() :
+                        db.Plans.ToList();
                 return published ?
-                    db.Plans.Where(x => x.Published == published).ToList() :
-                    db.Plans.ToList();
-            return published ?
-                    db.Plans.Where(x => x.Published == published).ToList().Where(x => filter.CheckPlan(x)).ToList() :
-                    db.Plans.ToList().Where(x => filter.CheckPlan(x)).ToList();
+                        db.Plans.Where(x => x.Published == published).ToList().Where(x => filter.CheckPlan(x)).ToList() :
+                        db.Plans.ToList().Where(x => filter.CheckPlan(x)).ToList();
+            }
         }
 
 
         public static Plan GetPlanByPK(int primaryKey)
         {
-            return db.Plans.First(x => x.Id == primaryKey);
+            using(DbContext db = new DbContext())
+            {
+                return db.Plans.First(x => x.Id == primaryKey);
+            }
         }
 
-        public static int SavePlan(dynamic values, bool creation = true)
+        public static int SavePlan(dynamic values, Plan currentPlan = null, bool creation = true)
         {
-            Plan plan;
+            Plan plan = null;
             if (creation)
             {
                 plan = new Plan();
@@ -40,19 +46,21 @@ namespace PIS.Controllers
                 plan.Locality_id = values.locality;
                 plan.Status = -1;
                 plan.Date = DateTime.Now;
+                plan.Note = values.note;
+                plan.Published = values.published;
             }
-            else
-                plan = GetPlanByPK(values.id);
-
-            plan.Note = values.note;
-            plan.Published = values.published;
 
             using (DbContext db = new DbContext())
             {
                 if (creation)
                     db.Plans.Add(plan);
                 else
+                {
+                    plan = db.Plans.First(x => x.Id == currentPlan.Id);
+                    plan.Note = values.note;
+                    plan.Published = values.published;
                     db.Entry(plan).State = System.Data.Entity.EntityState.Modified;
+                }
                 db.SaveChanges();
 
                 if (creation)

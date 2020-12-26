@@ -15,7 +15,8 @@ namespace PIS.UI.Plan
     public partial class PlanForm : Form
     {
         int primaryKey;
-        public PlanForm(int primaryKey = -1)
+        PIS.Models.Plan currentPlan;
+        public PlanForm(int primaryKey = -1, bool is_public = false)
         {
             InitializeComponent();
 
@@ -30,8 +31,8 @@ namespace PIS.UI.Plan
 
             if (primaryKey != -1)
             {
-                var plan = PlanController.GetPlanByPK(primaryKey);
-                var districts = plan.PlanDistrict.GroupBy(x => x.Address);
+                currentPlan = PlanController.GetPlanByPK(primaryKey);
+                var districts = PlanDistrictController.GetDistrictsByPlan(currentPlan).GroupBy(x => x.Address);
                 foreach(var district in districts)
                 {
                     DataGridViewRow row = dataGridView1.Rows[dataGridView1.RowCount - 1].Clone() as DataGridViewRow;
@@ -41,17 +42,26 @@ namespace PIS.UI.Plan
 
                     dataGridView1.Rows.Add(row);
                 }
-                comboBox1.SelectedIndex = plan.Locality_id - 1;
+                comboBox1.SelectedIndex = currentPlan.Locality_id - 1;
+                checkBox1.Checked = currentPlan.Published;
 
                 DisableElements();
 
-                if(plan.File_id != null)
+                if(currentPlan.File_id != null)
                 {
                     button2.Enabled = false;
                     button4.Enabled = true;
                 }
             }
 
+            if (is_public)
+            {
+                textBox1.Enabled = false;
+                checkBox1.Enabled = false;
+                button4.Enabled = false;
+                button2.Enabled = false;
+                button1.Enabled = false;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -90,9 +100,10 @@ namespace PIS.UI.Plan
                         id = primaryKey,
                         published = checkBox1.Checked,
                         note = textBox1.Text,
-                    }, false);
+                    }, currentPlan, false);
 
             DisableElements();
+            LoggerController.Log(Program.CurrentUser, "Сохрание плана-графика номер " + currentPlan.Id.ToString());
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -107,6 +118,7 @@ namespace PIS.UI.Plan
                 (sender as Button).Enabled = false;
                 button4.Enabled = true;
                 PlanController.AttachFile(primaryKey, openFileDialog1.FileName);
+                LoggerController.Log(Program.CurrentUser, "Загрузка файла у плана-графика номер " + currentPlan.Id.ToString());
             }
         }
 
@@ -115,6 +127,7 @@ namespace PIS.UI.Plan
             PlanController.RemoveFile(primaryKey);
             (sender as Button).Enabled = false;
             button2.Enabled = true;
+            LoggerController.Log(Program.CurrentUser, "Удаление файла у плана-графика номер " + currentPlan.Id.ToString());
         }
 
         private void DisableElements()
