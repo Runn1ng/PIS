@@ -17,10 +17,16 @@ namespace PIS.Controllers
                 System.IO.File.CreateText("Log.txt");
             }
 
-            using(StreamWriter sw = new StreamWriter("Log.txt", append: true))
+            
+            try
             {
-                sw.WriteLine(user.Id + " " + user.Username + " " + action + " " + DateTime.Now.ToString());
+                using (StreamWriter sw = new StreamWriter("Log.txt", append: true))
+                {
+                    sw.WriteLine(user.Id + " " + user.Username + " " + action +
+                                 " " + DateTime.Now.ToString());
+                }
             }
+            catch (Exception e) {Console.WriteLine();}
         }
     }
 }
