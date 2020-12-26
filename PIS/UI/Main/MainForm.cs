@@ -26,6 +26,11 @@ namespace PIS.UI.Main
             foreach (var locality in localities)
                 comboBox1.Items.Add(new ComboBoxItem() { Value = locality.Id, Text = locality.Name });
 
+            if(Program.CurrentUser.Id == 3)
+            {
+                comboBox1.SelectedIndex = Program.CurrentUser.Locality_id.GetValueOrDefault() - 1;
+            }
+
             button1_Click(null, null);
         }
 

@@ -55,7 +55,7 @@ namespace PIS.UI.Plan
                 }
             }
 
-            if (is_public)
+            if (is_public || (Program.CurrentUser != null && Program.CurrentUser.Id == 3))
             {
                 textBox1.Enabled = false;
                 checkBox1.Enabled = false;
@@ -242,6 +242,7 @@ namespace PIS.UI.Plan
 
         private void button2_Click(object sender, EventArgs e) // Добавление файла
         {
+            openFileDialog1.Filter = "pdf files (*.pdf)|*.pdf|jpg files (*.jpg)|*.jpg";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 (sender as Button).Enabled = false;
