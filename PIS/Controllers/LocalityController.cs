@@ -16,5 +16,11 @@ namespace PIS.Controllers
                 return db.Localities.ToList();
             }
         }
+
+        public static async Task AddLocality(Locality locality)
+        {
+            Program.Db.Localities.Add(locality);
+            await Program.Db.SaveChangesAsync();
+        }
     }
 }

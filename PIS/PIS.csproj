@@ -222,6 +222,12 @@
     <Compile Include="UI\AdminPanel\AdminPanelForm.Designer.cs">
       <DependentUpon>AdminPanelForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\AdminPanel\Components\AddLocalityForm\AddLocalityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AdminPanel\Components\AddLocalityForm\AddLocalityForm.Designer.cs">
+      <DependentUpon>AddLocalityForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\AdminPanel\Components\AddUserForm\AddUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -265,6 +271,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AdminPanel\AdminPanelForm.resx">
       <DependentUpon>AdminPanelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AdminPanel\Components\AddLocalityForm\AddLocalityForm.resx">
+      <DependentUpon>AddLocalityForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AdminPanel\Components\AddUserForm\AddUserForm.resx">
       <DependentUpon>AddUserForm.cs</DependentUpon>
