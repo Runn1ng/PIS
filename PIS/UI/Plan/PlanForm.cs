@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PIS.Controllers;
 using PIS.UI.Components;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace PIS.UI.Plan
 {
@@ -95,9 +96,137 @@ namespace PIS.UI.Plan
             DisableElements();
         }
 
+        public void Export_Data_To_Word(DataGridView DGV, string filename)
+        {
+            if (DGV.Rows.Count != 0)
+            {
+                int RowCount = DGV.Rows.Count;
+                int ColumnCount = DGV.Columns.Count;
+                Object[,] DataArray = new object[RowCount + 1, ColumnCount + 1];
+
+                //add rows
+                int r = 0;
+                for (int c = 0; c <= ColumnCount - 1; c++)
+                {
+                    for (r = 0; r <= RowCount - 1; r++)
+                    {
+                        DataArray[r, c] = DGV.Rows[r].Cells[c].Value;
+                    } //end row loop
+                } //end column loop
+
+                Word.Document oDoc = new Word.Document();
+                oDoc.Application.Visible = true;
+                oDoc.PageSetup.TopMargin = 4f;
+                oDoc.PageSetup.BottomMargin = 4f;
+                oDoc.PageSetup.LeftMargin = 4f;
+                oDoc.PageSetup.RightMargin = 4f;
+
+                //page orintation
+                oDoc.PageSetup.Orientation = Word.WdOrientation.wdOrientLandscape;
+
+
+                dynamic oRange = oDoc.Content.Application.Selection.Range;
+                string oTemp = "";
+                for (r = 0; r <= RowCount - 1; r++)
+                {
+                    for (int c = 0; c <= ColumnCount - 1; c++)
+                    {
+                        oTemp = oTemp + DataArray[r, c] + "\t";
+
+                    }
+                }
+
+                //table format
+                oRange.Text = oTemp;
+
+                object Separator = Word.WdTableFieldSeparator.wdSeparateByTabs;
+                object ApplyBorders = true;
+                object AutoFit = true;
+                object AutoFitBehavior = Word.WdAutoFitBehavior.wdAutoFitWindow;
+
+                oRange.ConvertToTable(ref Separator, ref RowCount, ref ColumnCount,
+                                      Type.Missing, Type.Missing, ref ApplyBorders,
+                                      Type.Missing, Type.Missing, Type.Missing,
+                                      Type.Missing, Type.Missing, Type.Missing,
+                                      Type.Missing, ref AutoFit, ref AutoFitBehavior, Type.Missing);
+
+                oRange.Select();
+
+                oDoc.Application.Selection.Tables[1].Select();
+                oDoc.Application.Selection.Tables[1].Rows.AllowBreakAcrossPages = 0;
+                oDoc.Application.Selection.Tables[1].Rows.Alignment = 0;
+                oDoc.Application.Selection.Tables[1].Rows[1].Select();
+                oDoc.Application.Selection.InsertRowsAbove(1);
+                oDoc.Application.Selection.Tables[1].Rows[1].Select();
+                //header row style
+                oDoc.Application.Selection.Tables[1].Rows[1].Range.Bold = 1;
+                oDoc.Application.Selection.Tables[1].Rows[1].Range.Font.Name = "Tahoma";
+                oDoc.Application.Selection.Tables[1].Rows[1].Range.Font.Size = 7;
+                oDoc.Application.Selection.Tables[1].Borders.OutsideLineStyle =
+                    Word.WdLineStyle.wdLineStyleSingle;
+                oDoc.Application.Selection.Tables[1].Borders.InsideLineStyle =
+                    Word.WdLineStyle.wdLineStyleSingle;
+                oDoc.Application.Selection.Tables[1].Borders.OutsideLineWidth = Word.WdLineWidth.wdLineWidth025pt;
+                oDoc.Application.Selection.Tables[1].Borders.InsideLineWidth = Word.WdLineWidth.wdLineWidth025pt;
+
+                //add header row manually
+                for (int c = 0; c <= ColumnCount - 1; c++)
+                {
+                    oDoc.Application.Selection.Tables[1].Cell(1, c + 1).Range.Text = DGV.Columns[c].HeaderText;
+                }
+
+                //table style 
+                oDoc.Application.Selection.Tables[1].Rows[1].Select();
+                oDoc.Application.Selection.Cells.VerticalAlignment = Word.WdCellVerticalAlignment.wdCellAlignVerticalCenter;
+
+                var plan = Program.Db.Plans.Find(primaryKey);
+                var loc = plan.Locality.Name;
+
+                var m = new []
+                {
+                    "Январь",
+                    "Февраль",
+                    "Март",
+                    "Апрель",
+                    "Май",
+                    "Июнь",
+                    "Июль",
+                    "Август",
+                    "Сентябрь",
+                    "Октябрь",
+                    "Ноябрь",
+                    "Декабрь",
+                };
+
+                //header text
+                foreach (Word.Section section in oDoc.Application.ActiveDocument.Sections)
+                {
+                    Word.Range headerRange = section.Headers[Word.WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
+                    headerRange.Fields.Add(headerRange, Word.WdFieldType.wdFieldPage);
+                    headerRange.Text = $"План-график за '{m[plan.Month - 1]} {plan.Year}' на '{loc}'";
+                    headerRange.Font.Size = 16;
+                    headerRange.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+                }
+
+                //save the file
+                oDoc.Application.Selection.Tables[1].Columns[1].Width = 200f;
+                oDoc.Application.Selection.Tables[1].Columns.AutoFit();
+                oDoc.SaveAs2(filename);
+            }
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
+            SaveFileDialog sfd = new SaveFileDialog();
 
+            sfd.Filter = "Word Documents (*.docx)|*.docx";
+
+            sfd.FileName = "export.docx";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                Export_Data_To_Word(dataGridView1, sfd.FileName);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e) // Добавление файла

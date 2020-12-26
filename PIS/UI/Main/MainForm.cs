@@ -45,7 +45,6 @@ namespace PIS.UI.Main
         private void button2_Click(object sender, EventArgs e)
         {
             copyAlltoClipboard();
-            Microsoft.Office.Interop.Excel.Application xlexcel;
             Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
             Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
             object misValue = System.Reflection.Missing.Value;
