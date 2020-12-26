@@ -23,11 +23,15 @@ namespace PIS.UI.Login
 
             if (notEmpty)
             {
-                if (AuthService.Login(Username, Password))
+                var user = AuthService.Login(Username, Password);
+                if (user != null)
+                {
                     DialogResult = DialogResult.OK;
-                else Utils.ShowError("Wrong username or password");
+                    Program.CurrentUser = user;
+                }
+                else Utils.ShowError("неверное имя пользователя или пароль");
             }
-            else Utils.ShowError("Fill fields please!");
+            else Utils.ShowError("заполни те поля пожалуйста!");
         }
     }
 }

@@ -40,18 +40,18 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.Size = new System.Drawing.Size(101, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Username";
+            this.label1.Text = "имя пользователя";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 53);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 13);
+            this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Password";
+            this.label2.Text = "пароль";
             // 
             // InputUsername
             // 
@@ -74,7 +74,7 @@
             this.ButtonLogin.Name = "ButtonLogin";
             this.ButtonLogin.Size = new System.Drawing.Size(189, 23);
             this.ButtonLogin.TabIndex = 2;
-            this.ButtonLogin.Text = "Sign in";
+            this.ButtonLogin.Text = "войти";
             this.ButtonLogin.UseVisualStyleBackColor = true;
             // 
             // LoginForm

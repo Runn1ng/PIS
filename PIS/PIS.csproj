@@ -201,6 +201,33 @@
     <Compile Include="Models\Plan.cs" />
     <Compile Include="Models\PlanDistrict.cs" />
     <Compile Include="Models\Role.cs" />
+    <Compile Include="pisdbDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>pisdbDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="pisdbDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>pisdbDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="pisdbDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>pisdbDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AdminPanel\AdminPanelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AdminPanel\AdminPanelForm.Designer.cs">
+      <DependentUpon>AdminPanelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AdminPanel\Components\AddUserForm\AddUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AdminPanel\Components\AddUserForm\AddUserForm.Designer.cs">
+      <DependentUpon>AddUserForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Components\ComboBoxItem.cs" />
     <Compile Include="UI\Components\Filter.cs" />
     <Compile Include="UI\Index\IndexForm.cs">
@@ -236,6 +263,12 @@
     <EmbeddedResource Include="Migrations\202012231609313_change_tables.resx">
       <DependentUpon>202012231609313_change_tables.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\AdminPanel\AdminPanelForm.resx">
+      <DependentUpon>AdminPanelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AdminPanel\Components\AddUserForm\AddUserForm.resx">
+      <DependentUpon>AddUserForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Index\IndexForm.resx">
       <DependentUpon>IndexForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -259,6 +292,39 @@
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
+    <None Include="pisdbDataSet.xsc">
+      <DependentUpon>pisdbDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="pisdbDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>pisdbDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="pisdbDataSet.xss">
+      <DependentUpon>pisdbDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="pisdbDataSet1.xsc">
+      <DependentUpon>pisdbDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="pisdbDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>pisdbDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="pisdbDataSet1.xss">
+      <DependentUpon>pisdbDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="pisdbDataSet2.xsc">
+      <DependentUpon>pisdbDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="pisdbDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>pisdbDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="pisdbDataSet2.xss">
+      <DependentUpon>pisdbDataSet2.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
