@@ -43,6 +43,9 @@ namespace PIS.UI.Plan
 
                     dataGridView1.Rows.Add(row);
                 }
+
+                numericUpDown1.Text = currentPlan.Year.ToString();
+                numericUpDown2.Text = currentPlan.Month.ToString();
                 comboBox1.SelectedIndex = currentPlan.Locality_id - 1;
                 checkBox1.Checked = currentPlan.Published;
 
