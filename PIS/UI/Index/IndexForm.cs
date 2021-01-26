@@ -6,11 +6,15 @@ using PIS.UI.AdminPanel;
 using PIS.UI.Components;
 using PIS.UI.Main;
 using PIS.UI.Plan;
+using Application = Microsoft.Office.Interop.Excel.Application;
+
 
 namespace PIS.UI.Index
 {
     public partial class IndexForm : Form
     {
+        private Application xl;
+
         public IndexForm()
         {
             InitializeComponent();
@@ -138,6 +142,39 @@ namespace PIS.UI.Index
         private void button3_Click(object sender, EventArgs e)
         {
             new MainForm().Show();
+        }
+
+        private void copyAlltoClipboard()
+        {
+            dataGridView1.SelectAll();
+            DataObject dataObj = dataGridView1.GetClipboardContent();
+            if (dataObj != null)
+                Clipboard.SetDataObject(dataObj);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            copyAlltoClipboard();
+            Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
+            Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
+            object misValue = System.Reflection.Missing.Value;
+            xl = new Application();
+            xl.Visible = true;
+            xlWorkBook = xl.Workbooks.Add(misValue);
+            xlWorkSheet =
+                (Microsoft.Office.Interop.Excel.Worksheet)xlWorkBook.Worksheets
+                    .get_Item(1);
+            Microsoft.Office.Interop.Excel.Range CR =
+                (Microsoft.Office.Interop.Excel.Range)xlWorkSheet.Cells[3, 1];
+            CR.Select();
+            xlWorkSheet.PasteSpecial(CR, Type.Missing, Type.Missing,
+                Type.Missing, Type.Missing, Type.Missing, true);
+            xlWorkSheet.Cells[1, 1] = "Заявки по месяцам --- ";
+            xlWorkSheet.Cells[2, 2] = "Год";
+            xlWorkSheet.Cells[2, 3] = "Месяц";
+            xlWorkSheet.Cells[2, 4] = "Населенный пункт";
+            xlWorkSheet.Cells[2, 5] = "Статус";
+            xlWorkSheet.Cells[2, 6] = "Дата установки статуса";
         }
     }
 }
